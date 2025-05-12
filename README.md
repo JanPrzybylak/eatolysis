@@ -26,11 +26,11 @@
 
 ## 📱 Built With
 
-- **Frontend**: React / Next.js / Tailwind CSS (or your stack)
-- **Backend**: Node.js / Express (optional)
-- **AI Engine**: OpenAI / LangChain (planned)
-- **OCR/Barcode**: Tesseract.js, ZXing (or similar)
-- **Database**: Firebase / MongoDB / PostgreSQL
+- **Frontend**: 
+- **Backend**: 
+- **AI Engine**: 
+- **OCR/Barcode**: Tesseract.js
+- **Database**: Firebase 
 
 ---
 
