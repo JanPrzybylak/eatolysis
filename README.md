@@ -1,6 +1,6 @@
-# 🥦 Eatolysis – Know What You Eat
+# 🥦 Toxilabel – Know What You Eat
 
-**Eatolysis** is a mobile-friendly web application designed to help users make healthier food choices by analyzing food products through images, barcodes, or text input. Our app identifies harmful or questionable ingredients and offers detailed AI-powered explanations and healthier alternatives.
+**Toxilabel** is a mobile-friendly web application designed to help users make healthier food choices by analyzing food products through images, barcodes, or text input. Our app identifies harmful or questionable ingredients and offers detailed AI-powered explanations and healthier alternatives.
 
 ---
 
