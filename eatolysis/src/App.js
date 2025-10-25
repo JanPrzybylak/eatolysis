@@ -21,17 +21,42 @@ function App() {
   };
 
 const handleSearch = async (query) => {
-  try {
-    const res = await axios.get(`https://world.openfoodfacts.net/api/v2/product/${query}.json`);  //STAGING, CHANGE LATER TO PROD!!!!
-    const data = res.data.product;
+  if (!query) return;
+  const q = query.trim();
 
-    if (!data || !data.ingredients_text) {
+  try {
+    let product = null;
+
+    // barcode
+    if (/^\d+$/.test(q)) {
+      const res = await axios.get(`https://world.openfoodfacts.org/api/v0/product/${encodeURIComponent(q)}.json`);
+      product = res.data.product;
+    } else {
+      // by name
+      const searchRes = await axios.get('https://world.openfoodfacts.org/cgi/search.pl', {
+        params: {
+          search_terms: q,
+          search_simple: 1,
+          action: 'process',
+          json: 1,
+          page_size: 1
+        }
+      });
+
+      const first = (searchRes.data && searchRes.data.products && searchRes.data.products[0]) || null;
+      if (first && first.code) {
+        const res = await axios.get(`https://world.openfoodfacts.org/api/v0/product/${encodeURIComponent(first.code)}.json`);
+        product = res.data.product;
+      }
+    }
+
+    if (!product || !product.ingredients_text) {
       setIngredients('No ingredient info found for this product.');
       setWarnings([]);
       return;
     }
 
-    const text = data.ingredients_text;
+    const text = product.ingredients_text;
     setIngredients(text);
 
     const found = badList.filter(item => text.toLowerCase().includes(item));
